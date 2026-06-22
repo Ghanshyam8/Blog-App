@@ -129,3 +129,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR / "static")
 ]
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 1800  # Automatically logs the user out after 30 minutes of inactivity
+
+
+LOGIN_URL='/accounts/login/'
+LOGIN_REDIRECT_URL='tweetlist'
+LOGOUT_REDIRECT_URL='tweetlist'

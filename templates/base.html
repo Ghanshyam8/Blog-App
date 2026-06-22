@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-
     <title>
         {% block title %}
 
@@ -48,13 +46,18 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      <a href="{%url 'tweetlist'%}" class="btn btn-primary mx-2">Tweet Home</a>
+
+      {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Logout</button>
+      </form>
+      {%else%}
+      {% endif %}
     </div>
   </div>
 </nav>
-
-
-
-
     <div class="container">
         {% block content %}
         {% endblock %}

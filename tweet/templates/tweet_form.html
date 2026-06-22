@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Code
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center  mt-4">Welcome to Anish Blog</h1>
+<h2>{% if forms.instance.pk %}
+    Edit Tweet
+    {% else%} 
+    Create Tweet
+    {%endif%}
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{forms}}
+        <button class="btn btn-warning" type="submit">Submit</button>
+    </form>
+    <a href="{% url 'tweetlist' %}">Back to TweetList</a>
+</h2>
+
+
+{% endblock %}
