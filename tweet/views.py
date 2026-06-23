@@ -4,7 +4,7 @@ from .forms import TweetForm, UserRegistrationForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
-
+from django.db.models import Q
 
 # Create your views here.
 def register(request):
@@ -72,3 +72,15 @@ def tweet_delete(request, tweet_id):
     
     return render(request,'tweet_confirm_delete.html',{'tweet':tweet})
     
+    
+def tweet_search(request):
+    query=request.GET.get('searchok')
+    result= Tweet.objects.all()
+    
+    
+    if query:
+        result=Tweet.objects.filter(
+            Q(text__icontains=query) | Q(user__username__icontains=query)
+        )
+        
+    return render(request, 'tweet_search.html', {'result':result, 'query':query})

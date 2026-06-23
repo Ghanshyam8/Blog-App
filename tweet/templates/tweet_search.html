@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{%block title%}
+
+{% endblock %}
+
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+
+{% if result %}
+    {% for tweet in result %}
+        <div class="tweet">
+            <h4 class="card-title text-muted">@{{tweet.user.username}}</h4>
+            <p class="card-text fs-5">{{tweet.text}}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No tweets found matching your search.</p>
+{% endif %}
+
+
+{% endblock %}
